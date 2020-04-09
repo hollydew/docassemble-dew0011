@@ -1,0 +1,84 @@
+---
+features:
+  css: app_customisation.css
+  debug: True
+---
+include:
+  - data_block.yml
+  - code_block.yml
+---
+mandatory: True
+question:  Data table as a table
+subquestion: |
+  
+  ${ HMDcolumn_header }
+  ${ HMDdashes }
+  %for HMDitem in HMDtable_rows:
+  ${ HMDitem }
+  %endfor
+buttons:
+  Continue: continue
+---
+variable name: HMDquestions
+use objects: True
+data:
+  - HMDquestion: First names?
+    HMDchoices:
+      - Holly
+      - Mathew
+      - Patricia
+  - HMDquestion: Last names?
+    HMDchoices:
+      - Dew
+  - HMDquestion: Ages?
+    HMDchoices:
+      - 23
+      - 25
+      - 63
+  - HMDquestion: Hobbies?
+    HMDchoices:
+      - art
+      - music
+      - reading
+  - HMDquestion: Pets?
+    HMDchoices:
+      - Yes
+      - No 
+    none of the above: False
+  - HMDquestion: Is this information correct?
+    HMDchoices:
+      - Yes
+      - No
+    none of the above: False
+---
+mandatory: True
+question: Checkbox results
+subquestion: |
+  
+  ${ HMDquestion_table }
+  
+attachment:
+  docx template file: Table.docx
+  valid formats:
+    - pdf
+buttons:
+  - Exit: exit
+  - Restart: restart
+---
+table: HMDquestion_table
+rows:  HMDquestions
+columns:
+  - Question: |
+      row_item['HMDquestion']
+  - Selected answers: |
+      row_item['HMDanswers'].true_values()
+  - No. Selected answers: |
+      len(row_item['HMDanswers'].true_values())
+---
+question: |
+  ${ HMDquestions[i]['HMDquestion'] }
+fields:
+  - no label: HMDquestions[i]['HMDanswers']
+    datatype: checkboxes
+    code: HMDquestions[i]['HMDchoices']
+---

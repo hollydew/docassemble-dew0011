@@ -1,0 +1,20 @@
+---
+variable name: HMDperson_info
+use objects: True
+data:
+  - First Name: Holly
+    Last Name: Dew
+    Age: 23
+    Hobbies?: art
+    Likes Pets?: True
+  - First Name: Mathew
+    Last Name: Dew
+    Age: 25
+    Hobbies?: music
+    Likes pets?: True
+  - First Name: Patricia
+    Last Name: Dew
+    Age: 63
+    Hobbies?: reading
+    Likes pets?: True
+---

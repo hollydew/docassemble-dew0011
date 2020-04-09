@@ -1,0 +1,43 @@
+---
+# Creates the column header
+# We'll create the column headers in this code block.
+code: |
+  # Initialise the variable as empty. Gives us a starting point
+  HMDcolumn_header = ""
+  
+  # We access the first list element and iterate through its keys
+  for HMDitem in HMDperson_info[0]:
+    HMDcolumn_header += HMDitem + '|'
+  
+  # Strip off the last vertical bar.  We don't need it.
+  HMDcolumn_header = HMDcolumn_header[:-1]
+---
+# Creates the dashes for the table header 
+code: |
+  # We iterate up to one short of the length of the dictionary.
+  # That's because we don't want to display a tralining pipe
+  HMDdashes = "---"
+  for i in range(len(HMDperson_info[0]) - 1):
+    HMDdashes += "|---"
+---
+# This construct a list for display as the rows of the table.  Again, we iterate
+# through the first dictionary to get our list of keys, then we iterate over
+# this list to extract the values for each row.
+code: | 
+  # Initialise empty list
+  HMDtable_rows = []
+  
+  # First loop.  Iterate through each list element putting each dictionary
+  # into HMDitem
+  for HMDitem in HMDperson_info:
+      # Second loop.  Get the keys so we can get the values
+      # But before we start, initialise a temporary variable in which
+      # we construct the Markdown table row
+      MDrow = ""
+      for HMDkey in HMDitem:
+        MDrow += str(HMDitem[HMDkey]) + '|'
+      # Trim the last pipe
+      MDrow = MDrow[:-1]
+      # Add to the list
+      HMDtable_rows.append(MDrow)
+---
